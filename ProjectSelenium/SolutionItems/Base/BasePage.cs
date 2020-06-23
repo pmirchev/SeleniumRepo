@@ -16,12 +16,6 @@ namespace SolutionItems
 
         public WebDriverWait Wait { get; }
 
-        public IWebElement ScrollTo(IWebElement element)
-        {
-            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
-            return element;
-        }
-
         public void WaitForLoad(int timeoutSec = 15)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
