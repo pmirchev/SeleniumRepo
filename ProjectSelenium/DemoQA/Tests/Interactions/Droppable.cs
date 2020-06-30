@@ -13,8 +13,8 @@ namespace DemoQA.Tests.Interactions
         public void SetUp()
         {
             Initialize();
+            Driver.Navigate().GoToUrl("http://demoqa.com/droppable");
             _droppablePage = new DroppablePage(Driver);
-            _droppablePage.NaviteTo();
         }
 
         [TearDown]
@@ -27,11 +27,11 @@ namespace DemoQA.Tests.Interactions
         [Test]
         public void CorrectPosition_When_DragSourceAndDropOnDestination()
         {
-            var colorBefore = _droppablePage.DroppableBox.WrappedElement.GetCssValue("background-color");
+            var colorBefore = _droppablePage.DroppableBox.GetCssValue("background-color");
 
-            Builder.DragAndDrop((OpenQA.Selenium.IWebElement)_droppablePage.DragabbleBox, target: (OpenQA.Selenium.IWebElement)_droppablePage.DroppableBox).Perform();
+            Builder.DragAndDrop(_droppablePage.DragabbleBox, _droppablePage.DroppableBox).Perform();
 
-            var colorAfter = _droppablePage.DroppableBox.WrappedElement.GetCssValue("background-color");
+            var colorAfter = _droppablePage.DroppableBox.GetCssValue("background-color");
 
             Assert.AreNotEqual(colorBefore, colorAfter);
         }
@@ -43,7 +43,7 @@ namespace DemoQA.Tests.Interactions
             int boxPositionYBefore = _droppablePage.DragabbleBox.Location.Y;
 
             Builder
-                .DragAndDropToOffset((OpenQA.Selenium.IWebElement)_droppablePage.DragabbleBox, -200, -150)
+                .DragAndDropToOffset(_droppablePage.DragabbleBox, -200, -150)
                 .Perform();
 
             int boxPositionXAfter = _droppablePage.DragabbleBox.Location.X;
@@ -60,7 +60,7 @@ namespace DemoQA.Tests.Interactions
             int boxPositionYBefore = _droppablePage.DragabbleBox.Location.Y;
 
             Builder
-                .DragAndDropToOffset((OpenQA.Selenium.IWebElement)_droppablePage.DragabbleBox, 200, 150)
+                .DragAndDropToOffset(_droppablePage.DragabbleBox, 200, 150)
                 .Perform();
 
             int boxPositionXAfter = _droppablePage.DragabbleBox.Location.X;

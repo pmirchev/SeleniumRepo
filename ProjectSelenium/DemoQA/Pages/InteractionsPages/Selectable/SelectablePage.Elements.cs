@@ -1,20 +1,19 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using SolutionItems;
-using SolutionItems.Core;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DemoQA.Pages.InteractionsPages.Selectable
 {
     public partial class SelectablePage : BasePage
     {
-        public SelectablePage(WebDriver driver)
+        public SelectablePage(IWebDriver driver)
             : base(driver)
         {
-            PageFactory.InitElements((IWebDriver)Driver, this);
+            PageFactory.InitElements(Driver, this);
         }
 
-        public List<WebElement> SelectableElements => Driver.FindElements(By.XPath("//*[@id='verticalListContainer']//li"));
+        public ReadOnlyCollection<IWebElement> SelectableElements => Driver.FindElements(By.XPath("//*[@id='verticalListContainer']//li"));
 
     }
 }

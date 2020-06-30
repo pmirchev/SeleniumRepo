@@ -13,8 +13,8 @@ namespace DemoQA.Tests.Interactions
         public void SetUp()
         {
             Initialize();
+            Driver.Navigate().GoToUrl("http://demoqa.com/resizable");
             _resizablePage = new ResizablePage(Driver);
-            _resizablePage.NaviteTo();
         }
 
         [TearDown]
@@ -28,13 +28,13 @@ namespace DemoQA.Tests.Interactions
         public void SuccessfullyResized_When_DragWithinLimits()
         {
             Builder
-                .ClickAndHold((IWebElement)_resizablePage.ResizableBoxWithRestrictionHandle)
+                .ClickAndHold(_resizablePage.ResizableBoxWithRestrictionHandle)
                 .MoveByOffset(150, 100)
                 .Release()
                 .Perform();
 
-            var widthAfter = _resizablePage.ResizableBoxWithRestriction.WrappedElement.GetCssValue("width");
-            var heightAfter = _resizablePage.ResizableBoxWithRestriction.WrappedElement.GetCssValue("height");
+            var widthAfter = _resizablePage.ResizableBoxWithRestriction.GetCssValue("width");
+            var heightAfter = _resizablePage.ResizableBoxWithRestriction.GetCssValue("height");
 
             Assert.AreEqual("350px", widthAfter);
             Assert.AreEqual("300px", heightAfter);
@@ -43,17 +43,17 @@ namespace DemoQA.Tests.Interactions
         [Test]
         public void SuccessfullyResized_When_DragWithoutLimits()
         {
-            IWebElement pageFooter = Driver.WrappedDriver.FindElement(By.Id("botton-text-10"));
-            Driver.WrappedDriver.ScrollTo(pageFooter);
+            IWebElement pageFooter = Driver.FindElement(By.Id("botton-text-10"));
+            Driver.ScrollTo(pageFooter);
 
             Builder
-                .ClickAndHold((IWebElement)_resizablePage.ResizableBoxWithoutRestrictionHandle)
+                .ClickAndHold(_resizablePage.ResizableBoxWithoutRestrictionHandle)
                 .MoveByOffset(350, 250)
                 .Release()
                 .Perform();
 
-            var widthAfter = _resizablePage.ResizableBoxWithoutRestriction.WrappedElement.GetCssValue("width");
-            var heightAfter = _resizablePage.ResizableBoxWithoutRestriction.WrappedElement.GetCssValue("height");
+            var widthAfter = _resizablePage.ResizableBoxWithoutRestriction.GetCssValue("width");
+            var heightAfter = _resizablePage.ResizableBoxWithoutRestriction.GetCssValue("height");
 
             Assert.AreEqual("550px", widthAfter);
             Assert.AreEqual("450px", heightAfter);

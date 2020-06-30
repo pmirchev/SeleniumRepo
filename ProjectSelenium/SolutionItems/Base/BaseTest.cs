@@ -4,7 +4,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using SolutionItems.Core;
 using System;
 using System.IO;
 
@@ -13,16 +12,18 @@ namespace SolutionItems
     [TestFixture]
     public class BaseTest
     {
-        protected WebDriver Driver { get; set; }
+        protected IWebDriver Driver;
 
-        protected Actions Builder { get; set; }
+        protected WebDriverWait Wait;
+
+        protected Actions Builder;
 
         public void Initialize()
         {
-            Driver = new WebDriver();
-            Driver.Start(Browser.Chrome);
-            Driver.WrappedDriver.Manage().Window.Maximize();
-            Builder = new Actions(Driver.WrappedDriver);
+            Driver = new ChromeDriver();
+            Driver.Manage().Window.Maximize();
+            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(3));
+            Builder = new Actions(Driver);
         }
 
         public void Screenshot()

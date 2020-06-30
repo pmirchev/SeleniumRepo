@@ -8,34 +8,32 @@ namespace AutomationPractice.Pages
     {
         public void FillForm(FormModel user)
         {
-            FirstName.WrappedElement.SendKeys(user.FirstName);
-            LastName.WrappedElement.SendKeys(user.LastName);
-            Password.WrappedElement.SendKeys(user.Password);
-            Address.WrappedElement.SendKeys(user.Address);
-            City.WrappedElement.SendKeys(user.City);
-            PostCode.WrappedElement.SendKeys(user.PostCode);
-            PhoneNumber.WrappedElement.SendKeys(user.PhoneNumber);
-            SelectElement selectElementFromDropDownList = new SelectElement((OpenQA.Selenium.IWebElement)State);
+            FirstName.SendKeys(user.FirstName);
+            LastName.SendKeys(user.LastName);
+            Password.SendKeys(user.Password);
+            Address.SendKeys(user.Address);
+            City.SendKeys(user.City);
+            PostCode.SendKeys(user.PostCode);
+            PhoneNumber.SendKeys(user.PhoneNumber);
+            SelectElement selectElementFromDropDownList = new SelectElement(State);
             selectElementFromDropDownList.SelectByText("Alabama");
 
-            Driver.WrappedDriver.ScrollTo((OpenQA.Selenium.IWebElement)RegisterButton);
+            Driver.ScrollTo(RegisterButton);
             RegisterButton.Click();
         }
 
         public void FillFormWithoutState(FormModel user)
         {
-            FirstName.WrappedElement.SendKeys(user.FirstName);
-            LastName.WrappedElement.SendKeys(user.LastName);
-            Password.WrappedElement.SendKeys(user.Password);
-            Address.WrappedElement.SendKeys(user.Address);
-            City.WrappedElement.SendKeys(user.City);
-            PostCode.WrappedElement.SendKeys(user.PostCode);
-            PhoneNumber.WrappedElement.SendKeys(user.PhoneNumber);
+            FirstName.SendKeys(user.FirstName);
+            LastName.SendKeys(user.LastName);
+            Password.SendKeys(user.Password);
+            Address.SendKeys(user.Address);
+            City.SendKeys(user.City);
+            PostCode.SendKeys(user.PostCode);
+            PhoneNumber.SendKeys(user.PhoneNumber);
 
-            Driver.WrappedDriver.ScrollTo((OpenQA.Selenium.IWebElement)RegisterButton);
+            Driver.ScrollTo(RegisterButton);
             RegisterButton.Click();
         }
-
-        public override string Url => "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     }
 }

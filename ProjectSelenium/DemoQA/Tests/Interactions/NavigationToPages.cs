@@ -14,7 +14,7 @@ namespace DemoQA.Tests.Interactions
         public void SetUp()
         {
             Initialize();
-            Driver.GoToUrl("http://demoqa.com/");
+            Driver.Navigate().GoToUrl("http://demoqa.com/");
             _interactionsNavigation = new InteractionsNavigation(Driver);
         }
 
@@ -35,8 +35,8 @@ namespace DemoQA.Tests.Interactions
         {
             _interactionsNavigation.InteractionsButton.Click();
 
-            IWebElement sectionButton = (IWebElement)Driver.FindElement(By.XPath($"//*[normalize-space(text())='{sectionName}']"));
-            Driver.WrappedDriver.ScrollTo(sectionButton);
+            IWebElement sectionButton = Driver.FindElement(By.XPath($"//*[normalize-space(text())='{sectionName}']"));
+            Driver.ScrollTo(sectionButton);
             sectionButton.Click();
 
             string mainHeaderText = Driver.FindElement(By.ClassName("main-header")).Text;
