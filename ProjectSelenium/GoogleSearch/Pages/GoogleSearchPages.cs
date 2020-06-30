@@ -13,9 +13,9 @@ namespace GoogleSearch.Pages
             PageFactory.InitElements(driver, this);
         }
 
-        public IWebElement SearchField => Driver.FindElement(By.XPath("/html/body/div/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input"));
+        public IWebElement SearchField => Driver.FindElement(By.CssSelector("#tsf > div:nth-child(2) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input"));
 
-        public IWebElement FirstResultLink => Driver.FindElement(By.XPath("/html/body/div[6]/div[2]/div[9]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div[1]/a/h3"));
+        public IWebElement FirstResultLink => Driver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div.r > a > h3"));
 
         public string PageTitle => Driver.Title;
 
