@@ -14,8 +14,8 @@ namespace QAAutomation.Tests
         public void SetUp()
         {
             Initialize();
-            Driver.Url = "https://softuni.bg";
             _qaAutomationPages = new QAAutomationPages(Driver);
+            _qaAutomationPages.NaviteTo();
         }
 
         [TearDown]

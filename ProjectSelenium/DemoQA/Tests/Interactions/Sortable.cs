@@ -14,8 +14,8 @@ namespace DemoQA.Tests.Interactions
         public void SetUp()
         {
             Initialize();
-            Driver.Navigate().GoToUrl("http://demoqa.com/sortable");
             _sortablePagePage = new SortablePage(Driver);
+            _sortablePagePage.NaviteTo();
         }
 
         [TearDown]
@@ -32,8 +32,8 @@ namespace DemoQA.Tests.Interactions
             string secondElementBefore = _sortablePagePage.SortableElements[1].Text;
 
             Builder
-                .ClickAndHold(_sortablePagePage.SortableElements[0])
-                .MoveToElement(_sortablePagePage.SortableElements[1])
+                .ClickAndHold((OpenQA.Selenium.IWebElement)_sortablePagePage.SortableElements[0])
+                .MoveToElement((OpenQA.Selenium.IWebElement)_sortablePagePage.SortableElements[1])
                 .Release()
                 .Perform();
 
@@ -53,16 +53,16 @@ namespace DemoQA.Tests.Interactions
             string lastElementBefore = _sortablePagePage.SortableElements[5].Text;
 
             Builder
-                .ClickAndHold(_sortablePagePage.SortableElements[0])
-                .MoveToElement(_sortablePagePage.SortableElements[5])
+                .ClickAndHold((OpenQA.Selenium.IWebElement)_sortablePagePage.SortableElements[0])
+                .MoveToElement((OpenQA.Selenium.IWebElement)_sortablePagePage.SortableElements[5])
                 .Release()
                 .Perform();
 
-            var _bulderForElemetSix = new Actions(Driver);
+            var _bulderForElemetSix = new Actions(Driver.WrappedDriver);
 
             _bulderForElemetSix
-                .ClickAndHold(_sortablePagePage.SortableElements[4])
-                .MoveToElement(_sortablePagePage.SortableElements[0])
+                .ClickAndHold((OpenQA.Selenium.IWebElement)_sortablePagePage.SortableElements[4])
+                .MoveToElement((OpenQA.Selenium.IWebElement)_sortablePagePage.SortableElements[0])
                 .Release()
                 .Perform();
 

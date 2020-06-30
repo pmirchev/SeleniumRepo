@@ -2,6 +2,7 @@ using DemoQA.Pages.InteractionsPages.Draggable;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SolutionItems;
+using SolutionItems.Core;
 
 namespace DemoQA.Tests.Interactions
 {
@@ -14,8 +15,8 @@ namespace DemoQA.Tests.Interactions
         public void SetUp()
         {
             Initialize();
-            Driver.Navigate().GoToUrl("http://demoqa.com/dragabble");
             _draggablePage = new DraggablePage(Driver);
+            _draggablePage.NaviteTo();
         }
 
         [TearDown]
@@ -32,7 +33,7 @@ namespace DemoQA.Tests.Interactions
             var boxPositionYBefore = _draggablePage.DragabbleBox.Location.Y;
 
             Builder
-                .DragAndDropToOffset(_draggablePage.DragabbleBox, 500, 150)
+                .DragAndDropToOffset((IWebElement)_draggablePage.DragabbleBox, 500, 150)
                 .Perform();
 
             var newPositionX = _draggablePage.DragabbleBox.Location.X;
@@ -49,7 +50,7 @@ namespace DemoQA.Tests.Interactions
             var boxPositionYBefore = _draggablePage.DragabbleBox.Location.Y;
 
             Builder
-                .DragAndDropToOffset(_draggablePage.DragabbleBox, -200, -150)
+                .DragAndDropToOffset((IWebElement)_draggablePage.DragabbleBox, -200, -150)
                 .Perform();
 
             var newPositionX = _draggablePage.DragabbleBox.Location.X;
@@ -62,7 +63,7 @@ namespace DemoQA.Tests.Interactions
         [Test]
         public void ErrorMessageIsThrown_When_DragBoxOutsideTheWindow()
         {
-            Assert.Throws<WebDriverException>(() => Builder.DragAndDropToOffset(_draggablePage.DragabbleBox, -600, -300).Perform());
+            Assert.Throws<WebDriverException>(() => Builder.DragAndDropToOffset((IWebElement)_draggablePage.DragabbleBox, -600, -300).Perform());
         }
     }
 }

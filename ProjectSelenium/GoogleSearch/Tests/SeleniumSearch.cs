@@ -13,8 +13,8 @@ namespace GoogleSearch.Tests
         public void SetUp()
         {
             Initialize();
-            Driver.Url = "http://www.google.com";
             _googleSearchPages = new GoogleSearchPages(Driver);
+            _googleSearchPages.NaviteTo();
         }
 
         [TearDown]
@@ -27,8 +27,8 @@ namespace GoogleSearch.Tests
         [Test]
         public void OpenSeleniumPage_When_ClickOnFirstResult()
         {
-            _googleSearchPages.SearchField.SendKeys("selenium");
-            _googleSearchPages.SearchField.Submit();
+            _googleSearchPages.SearchField.WrappedElement.SendKeys("selenium");
+            _googleSearchPages.SearchField.WrappedElement.Submit();
 
             _googleSearchPages.FirstResultLink.Click();
 

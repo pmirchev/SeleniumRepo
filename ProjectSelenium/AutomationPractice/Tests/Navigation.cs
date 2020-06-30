@@ -16,8 +16,8 @@ namespace AutomationPractice.Tests
         public void Setup()
         {
             Initialize();
-            Driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
             _registrationsFormPage = new RegistrationFormPage(Driver);
+            Driver.GoToUrl("http://automationpractice.com/index.php");
         }
 
         [TearDown]
@@ -34,7 +34,7 @@ namespace AutomationPractice.Tests
             var mail = fixture.Create<string>() + "@gmail.com";
 
             _registrationsFormPage.SignInButton.Click();
-            _registrationsFormPage.EmailAddressField.SendKeys(mail);
+            _registrationsFormPage.EmailAddressField.WrappedElement.SendKeys(mail);
             _registrationsFormPage.CreateAccountButton.Click();
 
             _registrationsFormPage.AssertSuccessfullNavigate(_registrationsFormPage.PageSubHeading);

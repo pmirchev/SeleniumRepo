@@ -1,17 +1,18 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using SolutionItems;
+using SolutionItems.Core;
 
 namespace DemoQA.Pages.InteractionsPages.Draggable
 {
     public partial class DraggablePage : BasePage
     {
-        public DraggablePage(IWebDriver driver)
+        public DraggablePage(WebDriver driver)
             : base(driver)
         {
-            PageFactory.InitElements(Driver, this);
+            PageFactory.InitElements((IWebDriver)Driver, this);
         }
 
-        public IWebElement DragabbleBox => Driver.FindElement(By.Id("dragBox"));
+        public WebElement DragabbleBox => Driver.FindElement(By.Id("dragBox"));
     }
 }

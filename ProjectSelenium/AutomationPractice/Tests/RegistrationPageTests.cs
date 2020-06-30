@@ -18,13 +18,13 @@ namespace AutomationPractice.Tests
         public void Setup()
         {
             Initialize();
-            Driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication&back=my-account");
             _registrationFormPage = new RegistrationFormPage(Driver);
+            _registrationFormPage.NaviteTo();
             _user = FormFactory.Create();
 
             var fixture = new Fixture();
             var mail = fixture.Create<string>() + "@gmail.com";
-            _registrationFormPage.EmailAddressField.SendKeys(mail);
+            _registrationFormPage.EmailAddressField.WrappedElement.SendKeys(mail);
             _registrationFormPage.CreateAccountButton.Click();
         }
 
